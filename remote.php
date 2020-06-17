@@ -3,7 +3,7 @@ require 'inc/functions.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$machine = $_GET['machine'];
+$machine = secureInput( $_GET['machine'] );
 $machineDetails = $db->query( "SELECT * FROM `machines` WHERE `id` ='$machine' LIMIT 1" );
 while( $row = $machineDetails->fetchArray() ) {
 	$machineParent = $row['parent'];

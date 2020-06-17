@@ -4,12 +4,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require 'inc/functions.php';
 if( isset( $_POST['submit_new'] ) ) {
-	$name = $_POST['name'];
-	$type = $_POST['type'];
-	$parent = $_POST['parent'];
-	$ip = $_POST['ip'];
-	$mac = $_POST['mac'];
-	$remote_type = $_POST['remote_type'];
+	$name = secureInput( $_POST['name'] );
+	$type = secureInput( $_POST['type'] );
+	$parent = secureInput( $_POST['parent'] );
+	$ip = secureInput( $_POST['ip'] );
+	$mac = secureInput( $_POST['mac'] );
+	$remote_type = secureInput( $_POST['remote_type'] );
 	$ok = TRUE;
 	// check ip
 	$ip_oct = explode( "." , $ip );
@@ -40,7 +40,7 @@ if( isset( $_POST['submit_new'] ) ) {
 	}
 }
 if( isset( $_POST['submit_delete'] ) ) {
-	$machine = $_POST['machine'];
+	$machine = secureInput( $_POST['machine'] );
 	$delete = $db->query( "DELETE FROM `machines` WHERE `id` ='$machine' LIMIT 1 ");
 	if( $delete ) {
 		header( "Location:setupmachines.php?deleted" );
@@ -52,7 +52,7 @@ if( isset( $_POST['submit_delete'] ) ) {
 	<head>
 		<?php
 		require 'inc/header.php';
-		$getMachines = $db->query( "SELECT * FROM `machines` WHERE `type` =0" );
+		$getMachines = $db->query( "SELECT * FROM `machines`" );
 		?>
 	</head>
 	<body>
@@ -100,6 +100,7 @@ if( isset( $_POST['submit_delete'] ) ) {
 					<ul>
 						<?php
 						echo "<ul>";
+						$getMachines = $db->query( "SELECT * FROM `machines`" );
 						while( $row = $getMachines->fetchArray() ) {
 							
 							echo "<li>";

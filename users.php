@@ -40,7 +40,7 @@ if( isset( $_POST['submit_delete'] ) ) {
 	<body>
 		<?php require 'inc/menu.php'; ?>
 		<main role="main" class="container">
-			<h1>Users</h1>
+			<h1>Setup Users</h1>
 			<div class='card'>
 				<div class='card-header'><strong>Current Users:</strong></div>
 				<div class='card-body'>

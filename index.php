@@ -12,7 +12,7 @@
 			<?php
 			if( isset( $_GET['message'] ) ) {
 				echo "<div class='alert alert-info' role='alert'>";
-				echo $_GET['message'];
+				echo secureInput( $_GET['message'] );
 				echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
     			echo "<span aria-hidden='true'>&times;</span>";
   				echo "</button>";
@@ -20,7 +20,7 @@
 				echo "<br />";
 			}
 			?>
-			<h1>Welcome, <?php echo current_user; ?></h1>
+			<h1>Welcome, <?php echo secureInput( current_user ); ?></h1>
 			<?php
 			echo "<nav aria-label='breadcrumb'><ol class='breadcrumb'>";
 			echo "<li class='breadcrumb-item active'>Home</li>";
@@ -28,7 +28,7 @@
 				$getMachines = $db->query( "SELECT * FROM `machines` WHERE `parent` =0" );
 				echo "<li class='breadcrumb-item active' aria-current='page'><a href='index.php'>Machines</a></li>";
 			} else {
-				$parent = $_GET['parent'];
+				$parent = secureInput( $_GET['parent'] );
 				$getMachines = $db->query( "SELECT * FROM `machines` WHERE `parent` ='$parent'" );
 				echo "<li class='breadcrumb-item active'><a href='index.php'>Machines</a></li>";
 				$getParentDetails = $db->query( "SELECT * FROM `machines` WHERE `id` ='$parent' LIMIT 1" );

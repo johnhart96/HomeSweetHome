@@ -1,6 +1,6 @@
 <?php
 require 'inc/functions.php';
-$machine = $_GET['machine'];
+$machine = secureInput( $_GET['machine'] );
 $getMachine = $db->query( "SELECT `mac`,`name` FROM `machines` WHERE `id` ='$machine' LIMIT 1" );
 while( $row = $getMachine->fetchArray() ) {
 	$macAddress = $row['mac'];

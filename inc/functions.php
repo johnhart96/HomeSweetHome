@@ -30,4 +30,11 @@ function vnc( $id , $ip ) {
 	fclose( $thisMachine );
 	fclose( $default );
 }
+function go( $location ) {
+  echo "<script>window.location='" . $location . "'</script>";
+  return NULL;
+}
+function secureInput( $input ) {
+  return filter_var( $input , FILTER_SANITIZE_STRING );
+}
 ?>

@@ -43,4 +43,13 @@ error_reporting(E_ALL);
 // Check valid user
 $current_user = $_SERVER['PHP_AUTH_USER'];
 define( "current_user" , $current_user ); 
+if( empty( current_user ) ) {
+	$path = shell_exec( "pwd" );
+	die( "Athentication Error, perhaps your .htaccess file is missing or incorrect? check " . $path . "/.htaccess" );
+}
+// Check for .htaccess
+if( ! file_exists( ".htaccess" ) ) {
+	$path = shell_exec( "pwd" );
+	die( "Athentication Error, perhaps your .htaccess file is missing or incorrect? check " . $path . "/.htaccess" );
+}
 ?>

@@ -1,5 +1,6 @@
 <?php
-$macAddress = $_POST['macAddress'];
+require 'inc/functions.php';
+$macAddress = secureInput( $_POST['macAddress'] );
 $command = "wakeonlan " . $macAddress;
 $result =  shell_exec( $command );
 $message = substr( $result , -18 );

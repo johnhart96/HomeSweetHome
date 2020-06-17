@@ -23,5 +23,3 @@ rm install.sh
  ## Login
  You can login from the IP address or DNS hostname of your machine, the default username is 'admin' and the password is whatever you entered during installation
  
-## Known issues / being addressed
-* Does not protect againest HTTP Post & Get injection. This will be fixed in the next release.

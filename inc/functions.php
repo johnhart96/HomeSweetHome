@@ -37,4 +37,43 @@ function go( $location ) {
 function secureInput( $input ) {
   return filter_var( $input , FILTER_SANITIZE_STRING );
 }
+
+function wol( $macaddr ) {
+	// UDP/IP settings
+	$dest = '255.255.255.255'; // Broadcast domain only
+	$port = '9'; // Discard port
+
+	// Validate and format macaddress into a binary string array
+	if (!filter_var($macaddr, FILTER_VALIDATE_MAC)) { return FALSE; }
+	$macaddr = preg_replace('/[^0-9a-fA-F]/', ':', $macaddr);
+	$macaddr = explode(":", $macaddr);
+	for ($n = 0; $n < count($macaddr); $n++) {
+		$macaddr[$n] = hexdec($macaddr[$n]);
+	}
+	if (count($macaddr) != 6) { return FALSE; };
+
+	// Construct WOL magic packet
+	$len = '102'; // WOL Magic packet length
+	$magicpacket = pack("C*", 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF); // Synchronization Stream
+	for ($n = 0; $n < 16; $n++) { // Target MAC (x16)
+		$magicpacket .= pack("C*", ...$macaddr);
+	}
+	if (strlen($magicpacket) != $len) { return FALSE; };
+
+	// Create broadcast UDP socket
+	$sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+	$ok = socket_set_option($sock, SOL_SOCKET, SO_BROADCAST, 1);
+	if (!$ok) { return FALSE; }
+
+	// Send thrice
+	for ($n = 0; $n < 3; $n++) {
+  	$ok = socket_sendto($sock, $magicpacket, $len, 0, $dest, $port);
+		if (!$ok) { return FALSE; }
+	}
+
+	// Clean up
+	socket_close($sock);
+
+	return TRUE;
+}
 ?>

@@ -29,7 +29,7 @@ echo -ne '############             (45%)\r'
 systemctl restart apache2 > /dev/null
 echo -ne '###############          (50%)\r'
 rm -rf HomeSweetHome > /dev/null
-git clone https://github.com/johnhart96/HomeSweetHome/
+git clone https://github.com/johnhart96/HomeSweetHome/ > /dev/null
 echo -ne '#################        (60%)\r'
 mv HomeSweetHome/* $www
 rm -rf $www/HomeSweetHome
@@ -59,4 +59,7 @@ echo " |         Installation complete         |"
 echo " |                                       |"
 echo " | Username: admin                       |"
 echo " | Password: (what you entered above)    |"
+echo " |                                       |"
+echo " | You can access the web interface      |"
+echo " | using the IP address of hostname      |"
 echo " |_______________________________________|"

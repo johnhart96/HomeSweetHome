@@ -12,3 +12,12 @@ HomeSweetHome is a free home network web interface for sending Wake-On-Lan comma
 * Setup a VPN solution first, so that you have remote access
 * Setup a Static IP on the machine your installing HomeSweetHome to
 * Port forward ether your VPN port or the web interface port.
+
+## Installation
+
+ wget https://raw.githubusercontent.com/johnhart96/HomeSweetHome/master/install.sh
+ sudo bash install.sh
+ rm install.sh
+ 
+ ## Login
+ You can login from the IP address or DNS hostname of your machine, the default username is 'admin' and the password is whatever you entered during installation

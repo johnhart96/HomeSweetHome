@@ -1,0 +1,9 @@
+body {
+  padding-top: 5rem;
+}
+.card {
+	margin-bottom: 10px;
+}
+.input-group-prepend .input-group-text {
+	width: 150px;
+}

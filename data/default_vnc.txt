@@ -1,0 +1,5 @@
+ConnTime=2019-09-09T20:21:10.456Z
+FriendlyName={NAME}
+FullScreen=0
+Host={IP}
+Labels={NAME}

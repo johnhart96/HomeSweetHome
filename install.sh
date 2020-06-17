@@ -7,8 +7,8 @@ www="${path/DocumentRoot /}"
 sed -i '11 b; s/AllowOverride None\b/AllowOverride All/' /etc/apache2/apache2.conf
 systemctl restart apache2
 rm -rf HomeSweetHome
-git clone https://github.com/johnhart96/HomeSweetHome/ $www
-mv $www/HomeSweetHome/* $www
+git clone https://github.com/johnhart96/HomeSweetHome/ 
+mv HomeSweetHome/* $www
 rm -rf $www/HomeSweetHome
 rm $www/index.html
 echo 'AuthUserFile /var/www/html/.htpasswd' >> $www/.htaccess

@@ -7,6 +7,7 @@
 		?>
 	</head>
 	<body>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<?php require 'inc/menu.php'; ?>
 		<main role="main" class="container">
 			<?php
@@ -81,27 +82,41 @@
 				echo "<div class='card'>";
 				echo "<div class='card-body'>";
 				echo "<h5 class='card-title'>" . $machine['name'] . "</h5>";
-				$ping = ping( $machine['ip'] );
-				if( $ping == 1 ) {
-					echo "<div class='alert alert-success' style='padding: 0px; role='alert'>";
-				} else {
-					echo "<div class='alert alert-danger' style='padding: 0px; role='alert'>";
-				}
-				if( $ping == 1 ) {
-					echo "<center>Online</center>";
-				} else {
-					echo "<center>Offline</center>";
-				}
-				echo "</div>"; // Alert
+
+				?><span id="ping-result-<?php echo $machine['ip']; ?>"><div class='alert alert-warning' style='padding: 0px; role='alert'><center>Pinging...</center></div></span><?php
 				echo "<p class='card-text'>";
 				echo "IP Address: " . $machine['ip'] . "<br />";
 				echo "Mac Address: " . $machine['mac'] . "<br />";
 				echo "</p>";
-				if( $ping == 1 ) {
-					echo "<a href='remote.php?machine=" . $machine['id'] . "' class='btn btn-primary'>Remote Control</a>";
-				} else {
-					echo "<a href='wake.php?machine=" . $machine['id'] . "' class='btn btn-success'>Attempt Wake</a>";
-				}
+
+				?><span id="machine-action-<?php echo $machine['ip']; ?>"></span><?php
+				?><script>
+					$.ajax({
+						url: 'ping.php', type: 'get',
+						data: { "ipaddr": "<?php echo $machine['ip']; ?>"},
+						success: function(response) {
+							switch (parseInt(response)) {
+								case -1:
+									document.getElementById("ping-result-<?php echo $machine['ip']; ?>").innerHTML =
+										"<div class='alert alert-danger' style='padding: 0px; role='alert'><center>Invalid IP</center></div>";
+									break;
+								case 0:
+									document.getElementById("ping-result-<?php echo $machine['ip']; ?>").innerHTML =
+										"<div class='alert alert-danger' style='padding: 0px; role='alert'><center>Offline</center></div>";
+									document.getElementById("machine-action-<?php echo $machine['ip']; ?>").innerHTML =
+										"<a href='wake.php?machine=<?php echo $machine['id']; ?>' class='btn btn-success'>Attempt Wake</a>";
+									break;
+								case 1:
+									document.getElementById("ping-result-<?php echo $machine['ip']; ?>").innerHTML =
+										"<div class='alert alert-success' style='padding: 0px; role='alert'><center>Online</center></div>";
+									document.getElementById("machine-action-<?php echo $machine['ip']; ?>").innerHTML =
+										"<a href='remote.php?machine=<?php echo $machine['id']; ?>' class='btn btn-primary'>Remote Control</a>";
+									break;
+							}
+						}
+					});
+				</script><?php
+
 				// Check for VMs
 				$machineID = $machine['id'];
 				$getVMs = $db->query( "SELECT * FROM `machines` WHERE `parent` ='$machineID' " );
@@ -118,7 +133,7 @@
 			}
 			echo "</div>";
 			?>
-			
+
 		</main>
 		<?php require 'inc/footer.php'; ?>
 	</body>

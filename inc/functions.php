@@ -7,8 +7,8 @@ if( ! file_exists( "data/config.db" ) ) {
 }
 
 function ping( $host ) {
-        exec( sprintf( 'ping -c 1 -W 5 %s' , escapeshellarg( $host ) ) , $res , $rval );
-        return $rval === 0;
+    exec( sprintf( 'ping -c 1 -W 5 %s' , escapeshellarg( $host ) ) , $res , $rval );
+    return $rval === 0;
 }
 
 function rdp( $id , $ip ) {

@@ -27,6 +27,7 @@
 				<div class="dropdown-menu" aria-labelledby="dropdown01">
 					<a class="dropdown-item" href="users.php">Users</a>
 					<a class="dropdown-item" href="setupmachines.php">Machines</a>
+					<a class="dropdown-item" href="backup.php">Backup/Restore Config</a>
 				</div>
 			</li>
 		</ul>

@@ -18,7 +18,7 @@ cd ~
 echo -ne '#                        (01%)\r'
 apt-get update > /dev/null
 echo -ne '####                     (15%)\r'
-apt-get install git apache2 php7.3 libapache2-mod-php php7.3-sqlite -y > /dev/null
+apt-get install git apache2 php7.3 libapache2-mod-php php7.3-sqlite php7.3-zip -y > /dev/null
 echo -ne '########                 (25%)\r'
 path="`grep -i 'DocumentRoot' /etc/apache2/sites-available/000-default.conf`"
 ip="`hostname -i`"

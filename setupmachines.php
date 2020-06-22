@@ -187,6 +187,8 @@ if( isset( $_POST['submit_delete'] ) ) {
 								<option value='0'>Remote Desktop Connection (RDP)</option>
 								<option value='1'>VNC</option>
 								<option value='2'>SSH</option>
+								<option value='3'>HTTP</option>
+								<option value='4'>HTTPS</option>
 							</select>
 						</div>
 						

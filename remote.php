@@ -49,11 +49,20 @@ while( $row = $machineDetails->fetchArray() ) {
 							echo "<a download class='btn btn-success' href='data/" . $machineName . ".rdp' target='_new'>Start RDP</a>";
 							break;
 						case 1:
-							vnc( $machineName , $machineIP );
-							echo "<a download class='btn btn-success' href='data/" . $machineName . ".vnc' target='_new'>Start VNC</a>";
+							//vnc( $machineName , $machineIP );
+							//echo "<a download class='btn btn-success' href='data/" . $machineName . ".vnc' target='_new'>Start VNC</a>";
+							echo "<a download class='btn btn-success' href='vnc://" . $machineIP . "'>Start VNC Client</a>";
 							break;
 						case 2:
 							// SSH
+							echo "<a download class='btn btn-success' href='ssh://" . $machineIP . "'>Start SSH Client</a>";
+							break;
+						case 3:
+							// HTTP
+							echo "<a download class='btn btn-success' target='_blank' href='http://" . $machineIP . "'>Open Web Interface</a>";
+							break;
+						case 4:
+							echo "<a download class='btn btn-success' target='_blank' href='https://" . $machineIP . "'>Open Web Interface</a>";
 							break;
 					}
 					?>

@@ -4,3 +4,7 @@
 	window.jQuery || document.write( '<script src="js/vendor/jquery.slim.min.js"><\/script>' )
 </script>
 <script src="js/bootstrap.bundle.js"></script>
+
+<?php
+$db->close();
+?>

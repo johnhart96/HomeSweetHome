@@ -44,7 +44,7 @@ if( isset( $_POST['submit_delete'] ) ) {
 			if( isset( $_GET['added'] ) ) {
 				echo '<div class="alert alert-success" role="alert">Application added!</div>';
 			}
-			$getApps = $db->query( "SELECT * FROM `applications`" );
+			$getApps = $db->query( "SELECT * FROM `applications` ORDER BY `name` ASC" );
 			?>
 			<div class="card">
 				<div class="card-header"><strong>Current Applications:</strong></div>

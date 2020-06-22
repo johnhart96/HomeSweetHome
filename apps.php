@@ -18,7 +18,7 @@ error_reporting(E_ALL);
 		<main role="main" class="container">
 			<h1>Applications</h1>
 			<?php
-			$getApps = $db->query( "SELECT * FROM `applications`" );
+			$getApps = $db->query( "SELECT * FROM `applications` ORDER BY `name` ASC" );
 			?>
 			<div class="row">
 				<?php

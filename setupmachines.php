@@ -100,7 +100,7 @@ if( isset( $_POST['submit_delete'] ) ) {
 					<ul>
 						<?php
 						echo "<ul>";
-						$getMachines = $db->query( "SELECT * FROM `machines`" );
+						$getMachines = $db->query( "SELECT * FROM `machines` ORDER By `name` ASC" );
 						while( $row = $getMachines->fetchArray() ) {
 							
 							echo "<li>";
@@ -110,7 +110,7 @@ if( isset( $_POST['submit_delete'] ) ) {
 							echo "<em> (" . $row['ip'] . ") [" . $row['mac'] . "]</em>";
 							// Check for VMs
 							$id = $row['id'];
-							$getVMs = $db->query( "SELECT * FROM `machines` WHERE `type` =1 AND `parent` =$id" );
+							$getVMs = $db->query( "SELECT * FROM `machines` WHERE `type` =1 AND `parent` =$id ORDER BY `name` ASC" );
 							$count = 0;
 							while( $vm = $getVMs->fetchArray() ) {
 								$count ++;
@@ -161,7 +161,8 @@ if( isset( $_POST['submit_delete'] ) ) {
 							<select name='parent' class='form-control'>
 								<option value='0' selected>None</option>
 								<?php
-								while( $row = $getMachines->fetchArray() ) {
+								$getPhysical = $db->query( "SELECT * FROM `machines` WHERE `type` =0" );
+								while( $row = $getPhysical->fetchArray() ) {
 									echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
 								}
 								?>

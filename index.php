@@ -26,7 +26,7 @@
 			echo "<nav aria-label='breadcrumb'><ol class='breadcrumb'>";
 			echo "<li class='breadcrumb-item active'>Home</li>";
 			if( ! isset( $_GET['parent'] ) ) {
-				$getMachines = $db->query( "SELECT * FROM `machines` WHERE `parent` =0" );
+				$getMachines = $db->query( "SELECT * FROM `machines` WHERE `parent` =0 ORDER BY `name` ASC" );
 				echo "<li class='breadcrumb-item active' aria-current='page'><a href='index.php'>Machines</a></li>";
 			} else {
 				$parent = secureInput( $_GET['parent'] );
@@ -119,7 +119,7 @@
 
 				// Check for VMs
 				$machineID = $machine['id'];
-				$getVMs = $db->query( "SELECT * FROM `machines` WHERE `parent` ='$machineID' " );
+				$getVMs = $db->query( "SELECT * FROM `machines` WHERE `parent` ='$machineID' ORDER BY `name` ASC " );
 				$count = 0;
 				while( $row = $getVMs->fetchArray() ) {
 					$count ++;

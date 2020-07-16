@@ -36,7 +36,12 @@ if( isset( $_POST['submit_delete'] ) ) {
 		<?php require 'inc/menu.php'; ?>
 		<main role="main" class="container">
 			<h1>Setup Applications</h1>
-			<br />
+			<nav aria-label="breadcrumb">
+			  <ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Setup Apps</li>
+			  </ol>
+			</nav>
 			<?php
 			if( isset( $_GET['deleted'] ) ) {
 				echo '<div class="alert alert-success" role="alert">Application deleted!</div>';

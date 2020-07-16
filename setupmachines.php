@@ -58,6 +58,13 @@ if( isset( $_POST['submit_delete'] ) ) {
 	<body>
 		<?php require 'inc/menu.php'; ?>
 		<main role="main" class="container">
+			<h1>Setup Machines</h1>
+			<nav aria-label="breadcrumb">
+			  <ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Setup Machines</li>
+			  </ol>
+			</nav>
 			<div class="row">
 				<?php
 				if( isset( $_GET['message'] ) ) {
@@ -72,7 +79,6 @@ if( isset( $_POST['submit_delete'] ) ) {
 				?>
 				
 			</div>
-			<h1>Setup Machines</h1>
 			<?php
 			if( isset( $_GET['added'] ) ) {
 				echo "<div class='alert alert-success' role='alert'>";
@@ -108,6 +114,8 @@ if( isset( $_POST['submit_delete'] ) ) {
 							echo $row['name'];
 							echo "</strong>";
 							echo "<em> (" . $row['ip'] . ") [" . $row['mac'] . "]</em>";
+							echo " ";
+							echo "<a href='editmachine.php?id=" . $row['id'] . "'>(Edit)</a>";
 							// Check for VMs
 							$id = $row['id'];
 							$getVMs = $db->query( "SELECT * FROM `machines` WHERE `type` =1 AND `parent` =$id ORDER BY `name` ASC" );
@@ -123,6 +131,8 @@ if( isset( $_POST['submit_delete'] ) ) {
 									echo "<li>";
 									echo $vm['name'];
 									echo "<em> (" . $vm['ip'] . ") [" . $vm['mac'] . "]</em>";
+									echo " ";
+									echo "<a href='editmachine.php?id=" . $vm['id'] . "'>(Edit)</a>";
 									echo "</li>";
 								}
 								echo "</ul>";

@@ -72,7 +72,7 @@ if( isset( $_POST['submit_restore'] ) ) {
 	<body>
 		<?php require 'inc/menu.php'; ?>
 		<main role="main" class="container">
-			<h1>Backup / Restore Configuration</h1>
+			<h1>Configuration</h1>
 			<br />
 			<div class="card">
 				<div class="card-header"><strong>Backup:</strong></div>
@@ -94,6 +94,13 @@ if( isset( $_POST['submit_restore'] ) ) {
 							</div>
 						</div>
 					</form>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header"><strong>Reset</strong></div>
+				<div class="card-body">
+					<p>Delete my configuration and reset to defauls. This is un-reversible. You may want to backup your config first! This will not reset users.</p>
+					<button class="btn btn-danger" onclick="window.location='reset.php'">Reset</button>
 				</div>
 			</div>
 		</main>

@@ -48,6 +48,7 @@ function curr_page( $page ) {
 					<a class="dropdown-item" href="setupmachines.php">Machines</a>
 					<a class="dropdown-item" href="setupapps.php">Apps</a>
 					<a class="dropdown-item" href="backup.php">Configuration</a>
+					<a class="dropdown-item" href="dhcp.php">DHCP &amp; DNS</a>
 				</div>
 			</li>
 		</ul>

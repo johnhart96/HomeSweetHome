@@ -106,7 +106,7 @@ if( isset( $_POST['submit_delete'] ) ) {
 					<ul>
 						<?php
 						echo "<ul>";
-						$getMachines = $db->query( "SELECT * FROM `machines` ORDER By `name` ASC" );
+						$getMachines = $db->query( "SELECT * FROM `machines` WHERE `parent` ='0' AND `type` ='0' ORDER By `name` ASC" );
 						while( $row = $getMachines->fetchArray() ) {
 							
 							echo "<li>";
